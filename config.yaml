@@ -1,0 +1,11 @@
+port: 8765
+address: 0.0.0.0 # Set to 127.0.0.1 if you only have local senders
+
+actions:
+  /test1:
+    command: /bin/touch "/tmp/file with spaces"
+    wait: true
+
+  /test2:
+    command: /bin/rm "/tmp/file with spaces"
+    wait: true
