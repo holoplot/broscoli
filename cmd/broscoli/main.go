@@ -86,10 +86,11 @@ func main() {
 
 		run := func() {
 			cmd := exec.Command(a.execParams[0], a.execParams[1:]...)
-			if err := cmd.Run(); err != nil {
+			if output, err := cmd.CombinedOutput(); err != nil {
 				log.Error().
 					Err(err).
 					Str("command", a.Command).
+					Str("output", string(output)).
 					Msg("Error running command")
 			}
 		}
