@@ -1,5 +1,7 @@
 # brOSColi - simple OSC command executor
 
+[![CircleCI](https://circleci.com/gh/holoplot/broscoli/tree/main.svg?style=svg)](https://circleci.com/gh/holoplot/broscoli/tree/main)
+
 Broscoli is a simple executor of local commands, triggered by OSC messages.
 It can be used to run local scripts or other executables when a configured OSC messages is received.
 
