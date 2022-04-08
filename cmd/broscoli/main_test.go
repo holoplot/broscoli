@@ -91,7 +91,7 @@ func TestAPI(t *testing.T) {
 	select {
 	case <-time.After(5 * time.Second):
 		t.Errorf("Timed out")
-	case _ = <-ch:
+	case <-ch:
 		for _, tt := range tests {
 			t.Run(tt.name, func(t *testing.T) {
 				client := osc.NewClient(address, int(port))

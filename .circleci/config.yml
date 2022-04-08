@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cimg/go:1.18
+    parallelism: 2
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - go-mod-v4-{{ checksum "go.sum" }}
+      - run:
+          name: Run unit tests
+          command: |
+            gotestsum --junitfile gotestsum-report.xml
+      - store_test_results:
+          path: gotestsum-report.xml
+      - run:
+          name: Run linter
+          command: |
+            golangci-lint run --exclude-use-default=false --disable errcheck
+      - save_cache:
+          key: go-mod-v4-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"
+
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build
