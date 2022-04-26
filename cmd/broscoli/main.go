@@ -11,6 +11,7 @@ import (
 
 	"github.com/hypebeast/go-osc/osc"
 	"github.com/kballard/go-shellquote"
+	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -38,7 +39,7 @@ func main() {
 	flag.Parse()
 
 	consoleWriter := zerolog.ConsoleWriter{
-		Out: os.Stdout,
+		Out: colorable.NewColorableStdout(),
 	}
 
 	if isatty.IsTerminal(os.Stdout.Fd()) {
